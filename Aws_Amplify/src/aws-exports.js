@@ -1,5 +1,5 @@
 const config = {
-  identityPoolId:'LMAO3',
+  identityPoolId:'LMAO4',
   region:'',
   userPoolId:'',
   userPoolWebClientId:'',
