@@ -1,67 +1,80 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-    </View>
-  );
-}
+  function Feed() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Feed!</Text>
+      </View>
+    );
+  }
 
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
+  function Profile() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Profile!</Text>
+      </View>
+    );
+  }
 
-function TestingScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Testing!</Text>
-    </View>
-  );
-}
+  function Notifications() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Notifications!</Text>
+      </View>
+    );
+  }
 
-const Tab = createBottomTabNavigator();
+  const Tab = createMaterialBottomTabNavigator();
 
-export default function TabScreen() {
-  return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarVisible:(route)=>{
-          if (route.name === 'Settings') {
-            return false;
-          }
-        },
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+  function MyTabs() {
+    return (
+      <Tab.Navigator
+        initialRouteName="Feed"
+        activeColor="white"
+        labelStyle={{ fontSize: 12 }}
+        style={{ backgroundColor: 'black' }}
+        barStyle={{ backgroundColor: 'black' }}
+      >
+        <Tab.Screen
+          name="Feed"
+          component={Feed}
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="home" color={color} size={26} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Notifications"
+          component={Notifications}
+          options={{
+            tabBarLabel: 'Updates',
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="bell" color={color} size={26} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={Profile}
+          options={{
+            tabBarLabel: 'Profile',
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="account" color={color} size={26} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    );
+  }
 
-          if (route.name === 'Home') {
-            iconName = focused
-              ? 'ios-information-circle'
-              : 'ios-information-circle-outline';
-          } else if (route.name === 'Settings') {
-            iconName = focused ? 'ios-list-box' : 'ios-list';
-          }
-
-          // You can return any component that you like here!
-          return <Text>LOOL</Text>;
-        },
-      })}
-      tabBarOptions={{
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
-      }}
-      tabBarVisible='false'
-    >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
-      <Tab.Screen name="Testing" component={TestingScreen} />
-    </Tab.Navigator>
-  );
-}
+  export default function TabScreen() {
+    return (
+        <MyTabs />
+    );
+  }
