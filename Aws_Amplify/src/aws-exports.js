@@ -1,8 +1,7 @@
 const config = {
-  identityPoolId:'LMAO8',
+  identityPoolId:'',
   region:'',
   userPoolId:'',
   userPoolWebClientId:'',
 }
-
 export default config;

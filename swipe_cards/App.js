@@ -1,12 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-import SwipeCards from './screens/swipecards.js'
+import { StyleSheet, Text, View, Button, ImageBackground } from 'react-native';
+import Swipe_Page from './screens/swipe';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <SwipeCards style={{flex: 1}} />
+        <Swipe_Page/>
     </View>
   );
 }
@@ -14,8 +13,14 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#F5FCFF"
   },
+  card: {
+    flex: 1,
+    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: "#E8E8E8",
+    justifyContent: "center",
+    backgroundColor: "white"
+  }
 });
